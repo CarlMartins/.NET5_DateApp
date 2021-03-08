@@ -1,4 +1,4 @@
-<h1 align="center"> .NET5_DateApp </h1>
+<h1 align="center"> .NET5_DatingApp </h1>
 <p align="center"> Projeto de estudo sobre .NET 5 </p>
 <hr>
 <h2 align="center"> Curso referência </h2> 
