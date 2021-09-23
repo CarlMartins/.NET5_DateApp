@@ -1,3 +1,4 @@
+import { AuthGuard } from './_guards/auth.guard';
 import { MessagesComponent } from './messages/messages.component';
 import { ListsComponent } from './lists/lists.component';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
@@ -8,7 +9,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'members', component: MemberListComponent },
+  { path: 'members', component: MemberListComponent, canActivate: [AuthGuard] },
   { path: 'members/:id', component: MemberDetailComponent },
   { path: 'lists', component: ListsComponent },
   { path: 'messages', component: MessagesComponent },
