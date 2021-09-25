@@ -1,3 +1,4 @@
+import { SharedModule } from './_modules/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -33,10 +34,7 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
-    BsDropdownModule.forRoot(),
-    ToastrModule.forRoot({
-      positionClass: 'toast-bottom-right',
-    }),
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
