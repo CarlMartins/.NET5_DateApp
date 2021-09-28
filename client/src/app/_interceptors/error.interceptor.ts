@@ -12,7 +12,7 @@ import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-  constructor(private router: Router, private toastr: ToastrService) {}
+  constructor(private router: Router, private toastr: ToastrService) { }
 
   intercept(
     request: HttpRequest<unknown>,
@@ -25,12 +25,12 @@ export class ErrorInterceptor implements HttpInterceptor {
             case 400:
               if (error.error.errors) {
                 const modalStateErrors = [];
-                for (const key in error.error.erros) {
-                  if (error.error.erros[key]) {
+                for (const key in error.error.errors) {
+                  if (error.error.errors[key]) {
                     modalStateErrors.push(error.error.errors[key]);
                   }
                 }
-                throw modalStateErrors;
+                throw modalStateErrors.flat();
               } else {
                 this.toastr.error(error.error, error.status);
               }
