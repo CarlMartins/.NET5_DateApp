@@ -18,7 +18,11 @@ import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
 import { ToastrModule } from 'ngx-toastr';
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
+<<<<<<< HEAD
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
+=======
+import { NotFoundComponent } from './errors/not-found/not-found.component';
+>>>>>>> 1740d62912830ff5ab5c1e3fba1fef88f44d64d9
 
 @NgModule({
   declarations: [
@@ -31,7 +35,11 @@ import { ServerErrorComponent } from './errors/server-error/server-error.compone
     ListsComponent,
     MessagesComponent,
     TestErrorsComponent,
+<<<<<<< HEAD
     ServerErrorComponent,
+=======
+    NotFoundComponent,
+>>>>>>> 1740d62912830ff5ab5c1e3fba1fef88f44d64d9
   ],
   imports: [
     BrowserModule,
