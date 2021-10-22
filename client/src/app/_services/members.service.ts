@@ -1,14 +1,7 @@
 import { IMember } from './../_models/member';
-import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
-
-const httpOptions = {
-  headers: new HttpHeaders({
-    Authorization: `Bearer ${JSON.parse(localStorage.getItem('user'))?.token}`,
-  }),
-};
 
 @Injectable({
   providedIn: 'root',
@@ -19,13 +12,10 @@ export class MembersService {
   constructor(private http: HttpClient) {}
 
   getMembers() {
-    return this.http.get<IMember[]>(`${this.baseUrl}users`, httpOptions);
+    return this.http.get<IMember[]>(`${this.baseUrl}users`);
   }
 
   getMember(username: string) {
-    return this.http.get<IMember>(
-      `${this.baseUrl}users/${username}`,
-      httpOptions
-    );
+    return this.http.get<IMember>(`${this.baseUrl}users/${username}`);
   }
 }
