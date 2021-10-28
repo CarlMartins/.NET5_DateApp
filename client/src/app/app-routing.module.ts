@@ -1,3 +1,4 @@
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
 import { AuthGuard } from './_guards/auth.guard';
@@ -20,9 +21,9 @@ const routes: Routes = [
       {
         path: 'members',
         component: MemberListComponent,
-        canActivate: [AuthGuard],
       },
       { path: 'members/:username', component: MemberDetailComponent },
+      { path: 'member/edit', component: MemberEditComponent },
       { path: 'lists', component: ListsComponent },
       { path: 'messages', component: MessagesComponent },
     ],
