@@ -3,7 +3,7 @@ import { MembersService } from './../../_services/members.service';
 import { AccountService } from './../../_services/account.service';
 import { IMember } from './../../_models/member';
 import { IUser } from './../../_models/user';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { take } from 'rxjs/operators';
 import { NgForm } from '@angular/forms';
 
@@ -16,6 +16,13 @@ export class MemberEditComponent implements OnInit {
   @ViewChild('editForm') editForm: NgForm;
   member: IMember;
   user: IUser;
+  @HostListener('window:beforeunload', ['$event']) unloadNotification(
+    $event: any
+  ) {
+    if (this.editForm.dirty) {
+      $event.returnValue = true;
+    }
+  }
 
   constructor(
     private accountService: AccountService,
