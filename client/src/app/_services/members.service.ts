@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 export class MembersService {
   baseUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getMembers() {
     return this.http.get<IMember[]>(`${this.baseUrl}users`);
@@ -17,5 +17,9 @@ export class MembersService {
 
   getMember(username: string) {
     return this.http.get<IMember>(`${this.baseUrl}users/${username}`);
+  }
+
+  updateMember(member: Member) {
+    return this.http.put(this.baseUrl + "users", member);
   }
 }
