@@ -8,6 +8,7 @@ import {
   NgxGalleryOptions,
 } from '@kolkov/ngx-gallery';
 
+
 @Component({
   selector: 'app-member-detail',
   templateUrl: './member-detail.component.html',
@@ -20,7 +21,7 @@ export class MemberDetailComponent implements OnInit {
 
   constructor(
     private memberService: MembersService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {

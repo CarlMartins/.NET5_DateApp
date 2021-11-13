@@ -5,6 +5,8 @@ import { environment } from '../../../environments/environment';
 import { AccountService } from '../../_services/account.service';
 import { IUser } from '../../_models/user';
 import { take } from 'rxjs/operators';
+import { MembersService } from '../../_services/members.service';
+import { IPhoto } from '../../_models/photo';
 
 
 @Component({
@@ -19,7 +21,7 @@ export class PhotoEditorComponent implements OnInit {
   baseUrl = environment.apiUrl;
   user: IUser;
 
-  constructor(private accountService: AccountService) {
+  constructor(private accountService: AccountService, private memberService: MembersService) {
     this.accountService.currentUser$.pipe(take(1))
       .subscribe(user => this.user = user);
   }
@@ -30,6 +32,23 @@ export class PhotoEditorComponent implements OnInit {
 
   fileOverBase = (e: any) => {
     this.hasBaseDropzoneOver = e;
+  }
+
+  setMainPhoto(photo: IPhoto) {
+    this.memberService.setMainPhoto(photo.id)
+      .subscribe(() => {
+        this.user.photoUrl = photo.url;
+        this.accountService.setCurrentUser(this.user);
+        this.member.photoUrl = photo.url;
+        this.member.photos.forEach(p => {
+          if (p.isMain) {
+            p.isMain = false;
+          }
+          if (p.id === photo.id) {
+            p.isMain = true;
+          }
+        });
+      });
   }
 
   initializeUploader() {

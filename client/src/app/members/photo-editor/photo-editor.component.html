@@ -1,12 +1,17 @@
 <div class="row">
-  <div class="col-2" *ngFor="let photo of member.photos">
+  <div class="col-2 " *ngFor="let photo of member.photos">
     <img
       src="{{photo.url}}"
       alt="{{photo.url}}"
       class="img-thumbnail p-1"
     >
     <div class="text-center">
-      <button class="btn btn-sm">
+      <button
+        [disabled]='photo.isMain'
+        (click)='setMainPhoto(photo)'
+        [ngClass]='photo.isMain ? "btn-success active" : "btn-outline-success" '
+        class="btn btn-sm"
+      >
         Main
       </button>
       <button class="btn btn-sm btn-danger">
@@ -24,10 +29,11 @@
 
     <div
       ng2FileDrop
-      [ngClass]="{'nv-file-over': hasBaseDropzoneOver}"
+      [ngClass]="{' nv-file-over
+      ': hasBaseDropzoneOver}"
       (fileOver)="fileOverBase($event)"
       [uploader]="uploader"
-      class="card bg-faded p-3  text-center mb-3 my-drop-zone"
+      class="card bg-faded p-3 text-center mb-3 my-drop-zone"
     >
       <i class='fa fa-upload fa-3x'></i>
       Base photos here
