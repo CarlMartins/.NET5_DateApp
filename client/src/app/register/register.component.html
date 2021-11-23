@@ -2,7 +2,30 @@
   <h2 class="text-center text-primary">Sign up</h2>
   <hr>
 
+  <div class='form-group'>
+    <label class='control-label' style='margin-right: 10px;'>
+      I am a:
+    </label>
+
+    <label class='radio-inline'>
+      <input formControlName='gender' type="radio" value='male'>
+      Male
+    </label>
+    <label class='radio-inline'>
+      <input class='ml-3' formControlName='gender' type="radio" value='female'>
+      Female
+    </label>
+  </div>
+
   <app-text-input [formControl]='$any(registerForm).controls["username"]' [label]='"Username"'></app-text-input>
+
+  <app-text-input [formControl]='$any(registerForm).controls["knownAs"]' [label]='"Known As"'></app-text-input>
+
+  <app-text-input [formControl]='$any(registerForm).controls["dateOfBirth"]' [label]='"Date of Birth"'></app-text-input>
+
+  <app-text-input [formControl]='$any(registerForm).controls["city"]' [label]='"City"'></app-text-input>
+
+  <app-text-input [formControl]='$any(registerForm).controls["country"]' [label]='"Country"'></app-text-input>
 
   <app-text-input
     [formControl]='$any(registerForm).controls["password"]' [label]='"Password"' type='"password'
