@@ -32,42 +32,42 @@
         </li>
       </ul>
       <div
-        class="dropdown"
         *ngIf="accountService.currentUser$ | async as user"
+        class="dropdown"
         dropdown
       >
-        <img src='{{user.photoUrl}}' alt='{{user.username}}'>
+        <img alt='{{user.username}}' src='{{user.photoUrl|| "./assets/user.png"}}'>
         <a
           class="dropdown-toggle text-light ml-2" dropdownToggle
         >Welcome {{ user.username | titlecase }}</a
         >
-        <div class="dropdown-menu mt-3" *dropdownMenu>
-          <a routerLink="member/edit" class="dropdown-item">Edit profile</a>
+        <div *dropdownMenu class="dropdown-menu mt-3">
+          <a class="dropdown-item" routerLink="member/edit">Edit profile</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" (click)="logOut()">Logout</a>
+          <a (click)="logOut()" class="dropdown-item">Logout</a>
         </div>
       </div>
 
       <form
-        *ngIf="(accountService.currentUser$ | async) === null"
         #loginForm="ngForm"
-        class="d-flex"
         (ngSubmit)="login()"
+        *ngIf="(accountService.currentUser$ | async) === null"
         autocomplete="off"
+        class="d-flex"
       >
         <input
-          name="username"
           [(ngModel)]="model.username"
           class="form-control me-2"
-          type="search"
+          name="username"
           placeholder="Username"
+          type="search"
         />
         <input
-          name="password"
           [(ngModel)]="model.password"
           class="form-control me-2"
-          type="password"
+          name="password"
           placeholder="Password"
+          type="password"
         />
         <button class="btn btn-success" type="submit">Login</button>
       </form>

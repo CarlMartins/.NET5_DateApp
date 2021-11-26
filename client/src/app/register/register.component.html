@@ -1,4 +1,4 @@
-<form (ngSubmit)="register()" [formGroup]='registerForm' autocomplete="off">
+<form (ngSubmit)="registerForm.valid && register()" [formGroup]='registerForm' autocomplete="off">
   <h2 class="text-center text-primary">Sign up</h2>
   <hr>
 
@@ -37,11 +37,17 @@
     [formControl]='$any(registerForm).controls["confirmPassword"]' [label]='"Confirm Password"' type='"password'
   ></app-text-input>
 
+  <div *ngIf="validationErrors.length > 0" class="row">
+    <ul class="text-danger">
+      <li *ngFor="let error of validationErrors">
+        {{error}}
+      </li>
+    </ul>
+  </div>
+
   <div class="form-group text-center">
-    <button class="btn btn-success mr-2" type="submit">Register</button>
+    <button [disabled]='!registerForm.valid' class="btn btn-success mr-2" type="submit">Register</button>
     <button (click)="cancel()" class="btn btn-default mr-2">Cancel</button>
   </div>
 </form>
 
-<p>Form value: {{registerForm.value | json}}</p>
-<p>Form status: {{registerForm.status | json}}</p>
