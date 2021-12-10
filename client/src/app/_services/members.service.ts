@@ -14,11 +14,17 @@ import { UserParams } from '../_models/userParams';
 export class MembersService {
   baseUrl = environment.apiUrl;
   members: IMember[] = [];
-
+  memberCache = new Map();
 
   constructor(private http: HttpClient) { }
 
   getMembers(userParams: UserParams) {
+    const response = this.memberCache.get(Object.values(userParams).join('-'));
+    if (response) {
+      return of(response);
+    }
+
+    console.log(Object.values(userParams).join('-'));
     let params = this.getPaginationHeaders(userParams.pageNumber, userParams.pageSize);
 
     params = params.append('minAge', userParams.minAge.toString());
@@ -26,7 +32,11 @@ export class MembersService {
     params = params.append('gender', userParams.gender);
     params = params.append('orderBy', userParams.orderBy);
 
-    return this.getPaginatedResult<IMember[]>(`${this.baseUrl}users`, params);
+    return this.getPaginatedResult<IMember[]>(`${this.baseUrl}users`, params)
+      .pipe(map(res => {
+        this.memberCache.set(Object.values(userParams).join('-'), res);
+        return res;
+      }));
   }
 
   getMember(username: string) {
