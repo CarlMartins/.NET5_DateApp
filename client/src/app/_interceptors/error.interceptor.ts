@@ -10,13 +10,14 @@ import { Observable, throwError } from 'rxjs';
 import { NavigationExtras, Router } from '@angular/router';
 import { catchError } from 'rxjs/operators';
 
+
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
   constructor(private router: Router, private toastr: ToastrService) {}
 
   intercept(
     request: HttpRequest<unknown>,
-    next: HttpHandler
+    next: HttpHandler,
   ): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
       catchError((error) => {
@@ -31,6 +32,8 @@ export class ErrorInterceptor implements HttpInterceptor {
                   }
                 }
                 throw modalStateErrors.flat();
+              } else if (typeof (error.error) === 'object') {
+                this.toastr.error(error.error, error.status);
               } else {
                 this.toastr.error(error.error, error.status);
               }
@@ -38,7 +41,7 @@ export class ErrorInterceptor implements HttpInterceptor {
             case 401:
               this.toastr.error(
                 error.error === null ? 'Unauthorized' : error.error,
-                error.status
+                error.status,
               );
               break;
             case 404:
@@ -57,7 +60,7 @@ export class ErrorInterceptor implements HttpInterceptor {
           }
         }
         return throwError(error);
-      })
+      }),
     );
   }
 }
