@@ -10,7 +10,7 @@ import { MessageService } from '../_services/message.service';
   styleUrls: ['./messages.component.css'],
 })
 export class MessagesComponent implements OnInit {
-  messages: IMessage[];
+  messages: IMessage[] = [];
   pagination: IPagination;
   container = 'Inbox';
   pageNumber = 1;
