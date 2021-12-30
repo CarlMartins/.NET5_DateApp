@@ -11,6 +11,8 @@ import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
+import { MemberDetailedResolver } from './_resolvers/member-detailed.resolver';
+
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -23,7 +25,7 @@ const routes: Routes = [
         path: 'members',
         component: MemberListComponent,
       },
-      { path: 'members/:username', component: MemberDetailComponent },
+      { path: 'members/:username', component: MemberDetailComponent, resolve: { member: MemberDetailedResolver } },
       {
         path: 'member/edit',
         component: MemberEditComponent,
