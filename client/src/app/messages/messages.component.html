@@ -32,7 +32,7 @@
       [hidden]='loading'
       [queryParams]='{tab: 3}'
       routerLink='{{container === "Outbox"
-          ? "/members/ " + message.recipientUsername
+          ? "/members/" + message.recipientUsername
           : "/members/" + message.senderUsername}}'
     >
       <td>{{message.content}}</td>
@@ -54,7 +54,12 @@
       </td>
       <td>{{message.messageSent | timeago}}</td>
       <td>
-        <button class='btn btn-danger'>Delete</button>
+        <button
+          (click)='$event.stopPropagation()'
+          (click)='deleteMessage(message.id)'
+          class='btn btn-danger'
+        >Delete
+        </button>
       </td>
     </tr>
     </tbody>
