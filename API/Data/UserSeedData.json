@@ -13,8 +13,8 @@
     "Country": "Solomon Islands",
     "Photos": [
       {
-        "url": "https://randomuser.me/api/portraits/women/19.jpg",
-        "isMain": true
+        "Url": "https://randomuser.me/api/portraits/women/19.jpg",
+        "IsMain": true
       }
     ]
   },
@@ -32,8 +32,8 @@
     "Country": "Northern Mariana Islands",
     "Photos": [
       {
-        "url": "https://randomuser.me/api/portraits/women/88.jpg",
-        "isMain": true
+        "Url": "https://randomuser.me/api/portraits/women/88.jpg",
+        "IsMain": true
       }
     ]
   },
@@ -51,8 +51,8 @@
     "Country": "Sudan",
     "Photos": [
       {
-        "url": "https://randomuser.me/api/portraits/women/71.jpg",
-        "isMain": true
+        "Url": "https://randomuser.me/api/portraits/women/71.jpg",
+        "IsMain": true
       }
     ]
   },
@@ -70,8 +70,8 @@
     "Country": "Malawi",
     "Photos": [
       {
-        "url": "https://randomuser.me/api/portraits/women/91.jpg",
-        "isMain": true
+        "Url": "https://randomuser.me/api/portraits/women/91.jpg",
+        "IsMain": true
       }
     ]
   },
@@ -89,8 +89,8 @@
     "Country": "Bahamas",
     "Photos": [
       {
-        "url": "https://randomuser.me/api/portraits/women/86.jpg",
-        "isMain": true
+        "Url": "https://randomuser.me/api/portraits/women/86.jpg",
+        "IsMain": true
       }
     ]
   },
@@ -108,8 +108,8 @@
     "Country": "Guatemala",
     "Photos": [
       {
-        "url": "https://randomuser.me/api/portraits/men/63.jpg",
-        "isMain": true
+        "Url": "https://randomuser.me/api/portraits/men/63.jpg",
+        "IsMain": true
       }
     ]
   },
@@ -127,8 +127,8 @@
     "Country": "Anguilla",
     "Photos": [
       {
-        "url": "https://randomuser.me/api/portraits/men/81.jpg",
-        "isMain": true
+        "Url": "https://randomuser.me/api/portraits/men/81.jpg",
+        "IsMain": true
       }
     ]
   },
@@ -146,8 +146,8 @@
     "Country": "Montserrat",
     "Photos": [
       {
-        "url": "https://randomuser.me/api/portraits/men/94.jpg",
-        "isMain": true
+        "Url": "https://randomuser.me/api/portraits/men/94.jpg",
+        "IsMain": true
       }
     ]
   },
@@ -165,8 +165,8 @@
     "Country": "Sweden",
     "Photos": [
       {
-        "url": "https://randomuser.me/api/portraits/men/87.jpg",
-        "isMain": true
+        "Url": "https://randomuser.me/api/portraits/men/87.jpg",
+        "IsMain": true
       }
     ]
   },
@@ -184,8 +184,8 @@
     "Country": "Samoa",
     "Photos": [
       {
-        "url": "https://randomuser.me/api/portraits/men/5.jpg",
-        "isMain": true
+        "Url": "https://randomuser.me/api/portraits/men/5.jpg",
+        "IsMain": true
       }
     ]
   }
