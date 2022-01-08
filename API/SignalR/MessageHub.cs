@@ -37,7 +37,7 @@ namespace API.SignalR
 
             await Clients
                 .Group(groupName)
-                .SendAsync("ReceivedMessageThread", messages);
+                .SendAsync("ReceiveMessageThread", messages);
         }
 
         public override async Task OnDisconnectedAsync(Exception exception)
@@ -57,7 +57,7 @@ namespace API.SignalR
 
             if (recipient == null) throw new HubException("Not found user");
 
-            var message = new Message()
+            var message = new Message
             {
                 Sender = sender,
                 Recipient = recipient,
@@ -65,6 +65,7 @@ namespace API.SignalR
                 RecipientUsername = recipient.UserName,
                 Content = createMessageDto.Content
             };
+
             
             _messageRepository.AddMessage(message);
 

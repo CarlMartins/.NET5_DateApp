@@ -1,6 +1,6 @@
 import { MembersService } from '../../_services/members.service';
 import { IMember } from '../../_models/member';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {
   NgxGalleryAnimation,
@@ -11,6 +11,9 @@ import { TabDirective, TabsetComponent } from 'ngx-bootstrap/tabs';
 import { IMessage } from '../../_models/message';
 import { MessageService } from '../../_services/message.service';
 import { PresenceService } from '../../_services/presence.service';
+import { AccountService } from '../../_services/account.service';
+import { IUser } from '../../_models/user';
+import { take } from 'rxjs/operators';
 
 
 @Component({
@@ -18,19 +21,25 @@ import { PresenceService } from '../../_services/presence.service';
   templateUrl: './member-detail.component.html',
   styleUrls: ['./member-detail.component.css'],
 })
-export class MemberDetailComponent implements OnInit {
+export class MemberDetailComponent implements OnInit, OnDestroy {
   @ViewChild('memberTabs', { static: true }) memberTabs: TabsetComponent;
   member: IMember;
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
   activeTab: TabDirective;
   messages: IMessage[] = [];
+  user: IUser;
 
   constructor(
     public presence: PresenceService,
     private route: ActivatedRoute,
     private messageService: MessageService,
-  ) {}
+    private accountService: AccountService,
+  ) {
+    this.accountService.currentUser$.pipe(take(1)).subscribe(user => {
+      this.user = user;
+    });
+  }
 
   ngOnInit(): void {
     this.route.data.subscribe(data => {
@@ -83,7 +92,13 @@ export class MemberDetailComponent implements OnInit {
   onTabActivated(data: TabDirective) {
     this.activeTab = data;
     if (this.activeTab.heading === 'Messages' && this.messages.length === 0) {
-      this.loadMessages();
+      this.messageService.createHubConnection(this.user, this.member.username);
+    } else {
+      this.messageService.stopHubConnection();
     }
+  }
+
+  ngOnDestroy(): void {
+    this.messageService.stopHubConnection();
   }
 }
