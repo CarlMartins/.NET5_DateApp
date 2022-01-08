@@ -1,5 +1,5 @@
-import { MembersService } from './../../_services/members.service';
-import { IMember } from './../../_models/member';
+import { MembersService } from '../../_services/members.service';
+import { IMember } from '../../_models/member';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {
@@ -10,6 +10,7 @@ import {
 import { TabDirective, TabsetComponent } from 'ngx-bootstrap/tabs';
 import { IMessage } from '../../_models/message';
 import { MessageService } from '../../_services/message.service';
+import { PresenceService } from '../../_services/presence.service';
 
 
 @Component({
@@ -26,7 +27,7 @@ export class MemberDetailComponent implements OnInit {
   messages: IMessage[] = [];
 
   constructor(
-    private memberService: MembersService,
+    public presence: PresenceService,
     private route: ActivatedRoute,
     private messageService: MessageService,
   ) {}
