@@ -3,6 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { getPaginatedResult, getPaginationHeaders } from './paginationHelpers';
 import { IMessage } from '../_models/message';
+import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
+import { IUser } from '../_models/user';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Injectable({
@@ -10,8 +13,33 @@ import { IMessage } from '../_models/message';
 })
 export class MessageService {
   baseUrl = environment.apiUrl;
+  hubUrl = environment.hubUrl;
+  private hubConnection: HubConnection;
+  private messageThreadSource = new BehaviorSubject<IMessage[]>([]);
+  messageThread$ = this.messageThreadSource.asObservable();
 
   constructor(private http: HttpClient) {}
+
+  createHubConnection(user: IUser, otherUsername: string) {
+    this.hubConnection = new HubConnectionBuilder()
+      .withUrl(this.hubUrl + 'message?user=' + otherUsername, {
+        accessTokenFactory: () => user.token,
+      })
+      .withAutomaticReconnect()
+      .build();
+
+    this.hubConnection
+      .start()
+      .catch((error) => console.log(error));
+
+    this.hubConnection.on('ReceiveMessageThread', messages => {
+      this.messageThreadSource.next(messages);
+    });
+  }
+
+  stopHubConnection() {
+    this.hubConnection.stop();
+  }
 
   getMessages(pageNumber, pageSize, container) {
     let params = getPaginationHeaders(pageNumber, pageSize);
