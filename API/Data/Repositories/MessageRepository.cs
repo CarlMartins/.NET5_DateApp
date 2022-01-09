@@ -107,7 +107,7 @@ namespace API.Data.Repositories
             {
                 foreach (var message in messages)
                 {
-                    message.DateRead = DateTime.Now;
+                    message.DateRead = DateTime.UtcNow;
                 }
 
                 await _context.SaveChangesAsync();
