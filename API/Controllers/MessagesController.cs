@@ -30,7 +30,7 @@ namespace API.Controllers
         {
             messageParams.Username = User.GetUsername();
 
-            var messages = await _unitOfWork.MessageRepository.GetMessagedForUser(messageParams);
+            var messages = await _unitOfWork.MessageRepository.GetMessagesForUser(messageParams);
             
             Response.AddPaginationHeader(
                 messages.CurrentPage, 
